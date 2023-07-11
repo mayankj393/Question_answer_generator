@@ -3,4 +3,4 @@ sentencepiece==0.1.99
 git+https://github.com/deepset-ai/haystack.git
 farm-haystack[inference]
 turtle
-docx
+docx2txt
