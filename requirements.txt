@@ -1,7 +1,8 @@
+--upgrade pip
 transformers==4.30.1
 sentencepiece==0.1.99
 git+https://github.com/deepset-ai/haystack.git
 farm-haystack[inference]
 python-docx
 #PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION==python
---upgrade pip
+
