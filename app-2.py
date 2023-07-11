@@ -1,7 +1,7 @@
 # import os
-#from turtle import color
+from turtle import color
 import streamlit as st
-#import docx 
+import docx 
 import os
 from transformers import AutoModelWithLMHead, AutoTokenizer
 from haystack.nodes import FARMReader
@@ -15,8 +15,9 @@ from haystack.nodes import FARMReader
 # new_reader = FARMReader(model_name_or_path="/content/drive/MyDrive/Colab Notebooks/Training Model")
 # context = '''India, officially the Republic of India (Hindi: Bhārat Gaṇarājya),[25] is a country in South Asia. It is the seventh-largest country by area; the most populous country[26][27] and the world's most populous democracy.[28][29][30] Bounded by the Indian Ocean on the south, the Arabian Sea on the southwest, and the Bay of Bengal on the southeast, it shares land borders with Pakistan to the west;[j] China, Nepal, and Bhutan to the north; and Bangladesh and Myanmar to the east. In the Indian Ocean, India is in the vicinity of Sri Lanka and the Maldives; its Andaman and Nicobar Islands share a maritime border with Thailand, Myanmar, and Indonesia.'''
 
-access_token = "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"
 
+# tokenizer = AutoTokenizer.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
+# model = AutoModelWithLMHead.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
 
 
 # a = st.number_input("Enter the number of questions to generate:", min_value=1, step=1)
@@ -47,8 +48,8 @@ access_token = "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"
 #     generate_questions_app()
 
 
-tokenizer = AutoTokenizer.from_pretrained("Kunjesh07/t5-base-question-generation-model",use_auth_token=access_token)
-model = AutoModelWithLMHead.from_pretrained("Kunjesh07/t5-base-question-generation-model",use_auth_token=access_token)
+tokenizer = AutoTokenizer.from_pretrained("Kunjesh_Model")
+model = AutoModelWithLMHead.from_pretrained("Kunjesh_Model")
 #@st.cache(suppress_st_warning=True)
 #def generate_questions(context, num_questions=1, max_length=64):
 #        input_text = "generate question: %s </s>" % context
@@ -66,7 +67,7 @@ model = AutoModelWithLMHead.from_pretrained("Kunjesh07/t5-base-question-generati
 #        return questions
 
 def generate_questions_app():
-    new_reader = FARMReader(model_name_or_path="Kunjesh07/bert-base-answer-generation",use_auth_token=access_token)
+    new_reader = FARMReader(model_name_or_path="Training Model")
     st.set_page_config(
     page_title="Question Answer Generator",
     # page_icon="https://www.logolynx.com/images/logolynx/16/169ba0bcc2e57b032548eeb606e4e7d5.png",
@@ -154,16 +155,16 @@ def generate_questions_app():
          #st.write('\n')
          #st.write(user_input)
    
-      # else:
-       #  st.subheader("Upload word document")
-        # uploaded_file = st.file_uploader("", type=["docx"])
-         #if uploaded_file is not None:
-          # doc = docx.Document(uploaded_file)
-           #user_input = " ".join([paragraph.text for paragraph in doc.paragraphs])
+       else:
+         st.subheader("Upload word document")
+         uploaded_file = st.file_uploader("", type=["docx"])
+         if uploaded_file is not None:
+           doc = docx.Document(uploaded_file)
+           user_input = " ".join([paragraph.text for paragraph in doc.paragraphs])
         # Read and process the uploaded Word document
           # file_contents = uploaded_file.read()
         # Do further processing with the file contents (e.g., extract text, analyze data, etc.)
-           #st.write("File Uploaded Successfully!")
+           st.write("File Uploaded Successfully!")
        val=st.button("Submit") 
         # else:
      
@@ -202,7 +203,7 @@ def generate_questions_app():
                 
                 generated_questions = generate_questions(user_input, num_questions=a)
                 for question in generated_questions:
-                    st.write( question)
+                    st.write("Question:", question)
                     res = new_reader.predict_on_texts(question, [user_input])
                     for answer in res['answers']:
                         st.write("Answer:", answer.answer)
