@@ -47,9 +47,9 @@ from haystack.nodes import FARMReader
 # if __name__ == "__main__":
 #     generate_questions_app()
 
-
-tokenizer = AutoTokenizer.from_pretrained("Kunjesh_Model")
-model = AutoModelWithLMHead.from_pretrained("Kunjesh_Model")
+access_token = "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"
+tokenizer = AutoTokenizer.from_pretrained("Kunjesh07/t5-base-question-generation-model",use_auth_token=access_token)
+model = AutoModelWithLMHead.from_pretrained("Kunjesh07/t5-base-question-generation-model",use_auth_token=access_token)
 #@st.cache(suppress_st_warning=True)
 #def generate_questions(context, num_questions=1, max_length=64):
 #        input_text = "generate question: %s </s>" % context
@@ -67,7 +67,7 @@ model = AutoModelWithLMHead.from_pretrained("Kunjesh_Model")
 #        return questions
 
 def generate_questions_app():
-    new_reader = FARMReader(model_name_or_path="Training Model")
+    new_reader = FARMReader(model_name_or_path="Kunjesh07/bert-base-answer-generation",use_auth_token=access_token)
     st.set_page_config(
     page_title="Question Answer Generator",
     # page_icon="https://www.logolynx.com/images/logolynx/16/169ba0bcc2e57b032548eeb606e4e7d5.png",
