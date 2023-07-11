@@ -15,9 +15,8 @@ from haystack.nodes import FARMReader
 # new_reader = FARMReader(model_name_or_path="/content/drive/MyDrive/Colab Notebooks/Training Model")
 # context = '''India, officially the Republic of India (Hindi: Bhārat Gaṇarājya),[25] is a country in South Asia. It is the seventh-largest country by area; the most populous country[26][27] and the world's most populous democracy.[28][29][30] Bounded by the Indian Ocean on the south, the Arabian Sea on the southwest, and the Bay of Bengal on the southeast, it shares land borders with Pakistan to the west;[j] China, Nepal, and Bhutan to the north; and Bangladesh and Myanmar to the east. In the Indian Ocean, India is in the vicinity of Sri Lanka and the Maldives; its Andaman and Nicobar Islands share a maritime border with Thailand, Myanmar, and Indonesia.'''
 
+access_token = "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"
 
-# tokenizer = AutoTokenizer.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
-# model = AutoModelWithLMHead.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
 
 
 # a = st.number_input("Enter the number of questions to generate:", min_value=1, step=1)
@@ -48,8 +47,8 @@ from haystack.nodes import FARMReader
 #     generate_questions_app()
 
 
-tokenizer = AutoTokenizer.from_pretrained("Kunjesh07/bert-base-answer-generation")
-model = AutoModelWithLMHead.from_pretrained("Kunjesh07/bert-base-answer-generation")
+tokenizer = AutoTokenizer.from_pretrained("Kunjesh07/bert-base-answer-generation",access_token)
+model = AutoModelWithLMHead.from_pretrained("Kunjesh07/bert-base-answer-generation",access_token)
 #@st.cache(suppress_st_warning=True)
 #def generate_questions(context, num_questions=1, max_length=64):
 #        input_text = "generate question: %s </s>" % context
