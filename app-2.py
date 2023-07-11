@@ -1,7 +1,7 @@
 # import os
-from turtle import color
+#from turtle import color
 import streamlit as st
-import docx 
+#import docx 
 import os
 from transformers import AutoModelWithLMHead, AutoTokenizer
 from haystack.nodes import FARMReader
@@ -155,16 +155,16 @@ def generate_questions_app():
          #st.write('\n')
          #st.write(user_input)
    
-       else:
-         st.subheader("Upload word document")
-         uploaded_file = st.file_uploader("", type=["docx"])
-         if uploaded_file is not None:
-           doc = docx.Document(uploaded_file)
-           user_input = " ".join([paragraph.text for paragraph in doc.paragraphs])
+      # else:
+       #  st.subheader("Upload word document")
+        # uploaded_file = st.file_uploader("", type=["docx"])
+         #if uploaded_file is not None:
+          # doc = docx.Document(uploaded_file)
+           #user_input = " ".join([paragraph.text for paragraph in doc.paragraphs])
         # Read and process the uploaded Word document
           # file_contents = uploaded_file.read()
         # Do further processing with the file contents (e.g., extract text, analyze data, etc.)
-           st.write("File Uploaded Successfully!")
+           #st.write("File Uploaded Successfully!")
        val=st.button("Submit") 
         # else:
      
