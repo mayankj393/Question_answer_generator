@@ -1,7 +1,7 @@
 # import os
 #from turtle import color
 import streamlit as st
-import docx 
+#import docx 
 import os
 from transformers import AutoModelWithLMHead, AutoTokenizer
 from haystack.nodes import FARMReader
